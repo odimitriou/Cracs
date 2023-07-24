@@ -1,5 +1,7 @@
 # Facebook Auto-Poster
 
+![image](Assets/feedback-2990424_960_720.jpg)
+
 ## Description
 
 Facebook Auto-Poster is a simple Python application that automates posting on Facebook using the Facebook Graph API. This application allows you to schedule and make posts on your Facebook account without manual intervention.
