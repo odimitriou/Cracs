@@ -1,10 +1,8 @@
 # Facebook Auto-Poster
 
-
-
 ## Description
 
-Facebook Auto-Poster is a simple Python application designed to run on a Raspberry Pi. It automates posting on Facebook using the Facebook Graph API. This application allows you to schedule and make posts on your Facebook account without manual intervention.
+Facebook Auto-Poster is a simple Python application that automates posting on Facebook using the Facebook Graph API. This application allows you to schedule and make posts on your Facebook account without manual intervention.
 
 ## Features
 
@@ -17,9 +15,8 @@ Facebook Auto-Poster is a simple Python application designed to run on a Raspber
 
 ### Prerequisites
 
-1. Raspberry Pi with a Linux-based operating system installed.
-2. Python 3 installed on the Raspberry Pi.
-3. Facebook user access token with appropriate permissions to post on the user's behalf.
+1. Python 3 installed on your system.
+2. Facebook user access token with appropriate permissions to post on the user's behalf.
 
 ### Installation
 
@@ -27,12 +24,10 @@ Facebook Auto-Poster is a simple Python application designed to run on a Raspber
 
 `git clone https://github.com/odimitriou/GraphAPI-test-app.git`
 
-
 2. Install the required Python dependencies.
 
-`cd GraphAPI-test-app
-pip install -r requirements.txt`
-
+`cd GraphAPI-test-app`
+`pip install -r requirements.txt`
 
 ### Configuration
 
