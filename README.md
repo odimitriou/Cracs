@@ -27,6 +27,7 @@ Facebook Auto-Poster is a simple Python application that automates posting on Fa
 2. Install the required Python dependencies.
 
 `cd GraphAPI-test-app`
+
 `pip install -r requirements.txt`
 
 ### Configuration
