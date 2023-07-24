@@ -1,6 +1,6 @@
 # Facebook Auto-Poster
 
-![image](Assets/feedback-2990424_960_720.jpg)
+![image](/Assets/feedback-2990424_960_720.jpg)
 
 ## Description
 
