@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from App.facebook_api import post_message_to_facebook
+from facebook_api import post_message_to_facebook
 
 def main():
     # Load environment variables from .env file
