@@ -1,6 +1,7 @@
 import os
+import facebook_api as fb
+import posts
 from dotenv import load_dotenv
-from facebook_api import post_message_to_facebook
 
 def main():
     # Load environment variables from .env file
@@ -13,7 +14,7 @@ def main():
     message_to_post = "Hello, this is an automated post using Facebook Graph API!"
 
     # Call the function to post on Facebook
-    post_message_to_facebook(user_access_token, message_to_post)
+    post_id = fb.post_message_to_facebook(user_access_token, message_to_post)
 
 if __name__ == "__main__":
     main()
