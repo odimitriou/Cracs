@@ -1,4 +1,11 @@
 import json
+import facebook_api as fb
+
+
+def post_message(access_token, message):
+    post_id = fb.post_message_to_facebook(access_token=access_token, message=message)
+    post_meta = fb.get_post_metadata(access_token=access_token, post_id=post_id)
+    print(post_meta)
 
 # Function to save post data to the JSON file
 def save_post_to_json(post_data, filename):
