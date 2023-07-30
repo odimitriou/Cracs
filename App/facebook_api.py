@@ -9,7 +9,7 @@ def post_message_to_facebook(access_token, message):
         graph = facebook.GraphAPI(access_token)
         post_response = graph.put_object("me", "feed", message=message)
         post_id = post_response["id"]
-        print(f"Successfully created a post! Post ID: {post_id}")
+        print(f"[+] Successfully created a post! Post ID: {post_id}")
         return post_id
     except facebook.GraphAPIError as e:
         print("An error occurred:", e)
@@ -24,7 +24,7 @@ def post_photo_to_facebook(access_token, photo_path, caption=None, album=None):
         graph = facebook.GraphAPI(access_token)
         with open(photo_path, "rb") as photo_file:
             post_id = graph.put_photo(image=photo_file, message=caption, album_path=album)
-        print("Successfully posted the photo on Facebook!")
+        print("[+] Successfully posted the photo on Facebook!")
         return post_id
     except facebook.GraphAPIError as e:
         print("An error occurred:", e)
@@ -40,7 +40,7 @@ def post_photo_with_link_to_facebook(access_token, photo_path, caption=None, lin
         message = caption + "\n\n" + link if link else caption
         with open(photo_path, "rb") as photo_file:
             post_id = graph.put_photo(image=photo_file, message=message)
-        print("Successfully posted the photo with link on Facebook!")
+        print("[+] Successfully posted the photo with link on Facebook!")
         return post_id
     except facebook.GraphAPIError as e:
         print("An error occurred:", e)
@@ -55,7 +55,7 @@ def delete_post_from_facebook(access_token, post_id):
     try:
         graph = facebook.GraphAPI(access_token)
         graph.delete_object(post_id)
-        print("Successfully deleted the post from Facebook!")
+        print("[+] Successfully deleted the post from Facebook!")
     except facebook.GraphAPIError as e:
         print("An error occurred:", e)
 
