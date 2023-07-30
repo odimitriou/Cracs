@@ -15,10 +15,24 @@ def post_message_to_facebook(access_token, message):
         print("An error occurred:", e)
         return None
 
+def post_message_with_link_to_facebook(access_token, caption, link=None, album=None):
+    '''
+    Function that make a post to facebook including a link in the caption.
+    '''
+    try:
+        message = caption + "\n\n" + link if link else caption
+        graph = facebook.GraphAPI(access_token)
+        post_response = graph.put_object("me", "feed", message=message, album=album)
+        post_id = post_response["id"]
+        print(f"[+] Successfully created post with link! Post ID: {post_id}")
+        return post_id
+    except facebook.GraphAPIError as e:
+        print("[-] An error occurred:", e)
+        return None
 
 def post_photo_to_facebook(access_token, photo_path, caption=None, album=None):
     '''
-    This function makes a facebook post with a photo and caption (optinal)
+    This function makes a facebook post with a photo and caption (optional)
     '''
     try:
         graph = facebook.GraphAPI(access_token)

@@ -1,23 +1,41 @@
 import json
 import facebook_api as fb
 
-
+# Function to post a message to facebook.
 def post_message(access_token, message):
-    '''
-    This function posts a message on facebook and saves
-    the post id into the posts.json file.
-    '''
     post_id = fb.post_message_to_facebook(access_token, message)
     #post_meta = fb.get_post_metadata(access_token, post_id)
-    write_post_id_to_json(post_id)
-    return post_id
+    if post_id is not None:
+        write_post_id_to_json(post_id)
+        return post_id
+    return None
+
+# Function to post a message with link in facebook.
+def post_message_with_link(access_token, caption, link=None, album=None):
+    post_id = fb.post_message_with_link_to_facebook(access_token, caption, link, album)
+    if post_id is not None:
+        write_post_id_to_json(post_id)
+        return post_id
+    return None
+
+# This function posts a photo with caption to facebook. 
+def post_photo(access_token, photo_path, caption=None, album=None):
+    post_id = fb.post_photo_to_facebook(access_token, photo_path, caption, album)
+    if post_id is not None:
+        write_post_id_to_json(post_id)
+        return post_id
+    return None
+
+# Function that posts a photo with a link in caption.
+def post_photo_with_link(access_token, photo_path, caption=None, link=None):
+    post_id = fb.post_photo_with_link_to_facebook(access_token, photo_path, caption, link)
+    if post_id is not None:
+        write_post_id_to_json(post_id) 
+        return post_id
+    return None
 
 # Function to delete the latest post from facebook.
 def delete_post(access_token, post_id):
-    '''
-    This function deletes a post made to facebook
-    using the corresponding facebook id of that post.
-    '''
     fb.delete_post_from_facebook(access_token, post_id)
     delete_post_id_from_json(post_id)
 
@@ -69,7 +87,7 @@ def write_post_id_to_json(post_id):
                 ids["post_ids"].append(post_id)
             with open("posts.json", "w") as file:
                 json.dump(ids, file, indent=4)
-            print("[+] Post id has been written to the JSON file.")
+            # print("[+] Post id has been written to the JSON file.")
         except Exception as e:
             print("[-] An error occurred:", e)
 
@@ -85,6 +103,41 @@ def get_recent_posts_from_json(num_posts=10):
                 return recent_ids[:num_posts]
             else:
                 return recent_ids
+    except Exception as e:
+        print("[-] An error occured:", e)
+
+# Function that determines if a line exists in a file.
+# Returns True if exists, False otherwise.
+def find_line_in_file(line, file_to_search):
+    try:
+        with open(file_to_search, "r") as search_file:
+            for existing_line in search_file:
+                if line == existing_line.strip():
+                    return True
+        return False
+    except FileNotFoundError:
+        print(f"File '{file_to_search}' not found.")
+        return False
+    except Exception as e:
+        print("An error occurred:", e)
+        return False
+
+# This function reads from "quotes.txt" one line (quote), checks if the quote
+# is already been posted (posted quotes are in the "posted_quotes.txt"). If it
+# has been posted it reads the next one until it find one that was not posted yet.
+# If no such quote found, it returns None, else it return the next quote to get posted.
+def get_quote():
+    try:
+        with open("quotes.txt", "r") as read_file:
+            read_file.seek(0)
+            quote_to_post = read_file.readline().strip()
+            while find_line_in_file(quote_to_post, "posted_quotes.txt"):
+                quote_to_post = read_file.readline().strip()
+        if quote_to_post:
+            with open("posted_quotes.txt", "a") as write_file:
+                write_file.write(quote_to_post + "\n")
+            return quote_to_post
+        return None
     except Exception as e:
         print("[-] An error occured:", e)
 
