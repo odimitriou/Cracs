@@ -5,7 +5,7 @@ import facebook_api as fb
 def post_message(access_token, message):
     post_id = fb.post_message_to_facebook(access_token, message)
     #post_meta = fb.get_post_metadata(access_token, post_id)
-    if post_id is not None:
+    if post_id:
         write_post_id_to_json(post_id)
         return post_id
     return None
@@ -13,7 +13,7 @@ def post_message(access_token, message):
 # Function to post a message with link in facebook.
 def post_message_with_link(access_token, caption, link=None, album=None):
     post_id = fb.post_message_with_link_to_facebook(access_token, caption, link, album)
-    if post_id is not None:
+    if post_id:
         write_post_id_to_json(post_id)
         return post_id
     return None
@@ -21,16 +21,16 @@ def post_message_with_link(access_token, caption, link=None, album=None):
 # This function posts a photo with caption to facebook. 
 def post_photo(access_token, photo_path, caption=None, album=None):
     post_id = fb.post_photo_to_facebook(access_token, photo_path, caption, album)
-    if post_id is not None:
-        write_post_id_to_json(post_id)
+    if post_id:
+        write_post_id_to_json(post_id["post_id"])
         return post_id
     return None
 
 # Function that posts a photo with a link in caption.
 def post_photo_with_link(access_token, photo_path, caption=None, link=None):
     post_id = fb.post_photo_with_link_to_facebook(access_token, photo_path, caption, link)
-    if post_id is not None:
-        write_post_id_to_json(post_id) 
+    if post_id:
+        write_post_id_to_json(post_id["post_id"]) 
         return post_id
     return None
 
@@ -38,6 +38,7 @@ def post_photo_with_link(access_token, photo_path, caption=None, link=None):
 def delete_post(access_token, post_id):
     fb.delete_post_from_facebook(access_token, post_id)
     delete_post_id_from_json(post_id)
+    # print(f"[+] Post with post id: {id} deleted!")
 
 # Function to delete n number of the latests posts from facebook.
 def delete_n_posts(access_token, number_of_posts=1):
@@ -141,3 +142,27 @@ def get_quote():
     except Exception as e:
         print("[-] An error occured:", e)
 
+# Function that deletes the last line of file.
+def delete_last_quote(filename):
+    try:
+        with open(filename, "r") as file:
+            lines = file.readlines()
+
+        with open(filename, "w") as file:
+            file.writelines(lines[:-1])
+
+        print("[+] Last quote has been deleted successfully.")
+    except FileNotFoundError:
+        print(f"[-] File '{filename}' not found.")
+    except Exception as e:
+        print("[-] An error occurred while deleting the last line:", e)
+
+# Function that deletes all lines in a file.
+def clear_file(filename):
+    try:
+        with open(filename, "w") as file:
+            file.write("")
+
+        print(f"[+] All lines have been deleted from '{filename}'. The file is now empty.")
+    except Exception as e:
+        print("[-] An error occurred while deleting all lines:", e)
