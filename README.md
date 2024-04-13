@@ -64,10 +64,6 @@ You can schedule the script to run at specific intervals using the built-in sche
 
 Replace `/path/to/your/facebook_auto_poster.py` with the actual path to your Python script.
 
-## Contributing
-
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
