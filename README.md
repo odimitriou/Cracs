@@ -1,4 +1,4 @@
-# Facebook Auto-Poster
+# kracts (the Facebook Auto-Poster)
 
 ![image](/Assets/feedback-2990424_960_720.jpg)
 
