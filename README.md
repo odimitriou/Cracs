@@ -1,4 +1,4 @@
-# kracts (the Facebook Auto-Poster)
+# Cracs (the Facebook Auto-Poster)
 
 ![image](/Assets/feedback-2990424_960_720.jpg)
 
@@ -46,13 +46,13 @@ Replace `your_facebook_access_token_here` with the actual Facebook user access t
 
 Run the Python script to make an automated post on your Facebook account:
 
-`python3 kracts_for_facebook.py`
+`python3 cracs_for_facebook.py`
 
 The script will automatically use the user access token from the `.env` file to authenticate with the Facebook Graph API and make the post.
 
-### Scheduling (comming soon)
+### Scheduling
 
-You can schedule the script to run at specific intervals using the built-in scheduling tools on your Raspberry Pi, such as `cron`.
+You can schedule the script to run at specific intervals using scheduling tools, such as `cron`.
 
 1. Open the crontab configuration:
 
