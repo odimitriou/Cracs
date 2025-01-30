@@ -46,7 +46,7 @@ Replace `your_facebook_access_token_here` with the actual Facebook user access t
 
 Run the Python script to make an automated post on your Facebook account:
 
-`python3 cracs_for_facebook.py`
+`python3 kracts_for_facebook.py`
 
 The script will automatically use the user access token from the `.env` file to authenticate with the Facebook Graph API and make the post.
 
